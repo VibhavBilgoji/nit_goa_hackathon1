@@ -390,10 +390,11 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
     setError(null);
   }, []);
 
-  // Fetch dashboard data on mount
-  useEffect(() => {
-    fetchDashboardData();
-  }, [fetchDashboardData]);
+  // Don't auto-fetch on mount to avoid errors on pages that don't need dashboard data
+  // Pages that need dashboard data should call fetchDashboardData() explicitly
+  // useEffect(() => {
+  //   fetchDashboardData();
+  // }, [fetchDashboardData]);
 
   // Auto-refresh dashboard every 5 minutes
   useEffect(() => {

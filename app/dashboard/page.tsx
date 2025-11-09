@@ -28,7 +28,13 @@ export default function Page() {
     geospatialData,
     isLoading,
     refreshDashboard,
+    fetchDashboardData,
   } = useDashboard();
+
+  // Fetch dashboard data on page mount
+  useEffect(() => {
+    fetchDashboardData();
+  }, [fetchDashboardData]);
 
   // Removed SLA alerts notification logic as SLA feature is not implemented
   useEffect(() => {
