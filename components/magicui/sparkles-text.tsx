@@ -89,7 +89,7 @@ export function SparklesText({
 
   return (
     <div
-      className={cn("relative inline-block", className)}
+      className={cn("relative", className)}
       style={
         {
           "--sparkles-first-color": colors.first,
@@ -97,8 +97,10 @@ export function SparklesText({
         } as CSSProperties
       }
     >
-      <span className="relative z-10">{children}</span>
-      <span className="absolute inset-0 overflow-hidden">
+      <span className="relative z-10 inline-block whitespace-normal break-words">
+        {children}
+      </span>
+      <span className="absolute inset-0 overflow-hidden pointer-events-none">
         {sparkles.map((sparkle) => (
           <span
             key={sparkle.id}

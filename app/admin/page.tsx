@@ -164,55 +164,57 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 max-w-7xl">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-black dark:bg-white rounded-lg">
-              <Shield className="h-6 w-6 text-white dark:text-black" />
+        <div className="mb-6 sm:mb-8">
+          <div className="flex items-center gap-2 sm:gap-3 mb-2">
+            <div className="p-1.5 sm:p-2 bg-black dark:bg-white rounded-lg">
+              <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-white dark:text-black" />
             </div>
-            <h1 className="text-3xl font-bold text-black dark:text-white">
+            <h1 className="text-2xl sm:text-3xl font-bold text-black dark:text-white">
               Admin Dashboard
             </h1>
           </div>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             Welcome back, {user?.name}. Manage and monitor your OurStreet
             platform.
           </p>
         </div>
 
         {/* Stats Overview */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-6 sm:mb-8">
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
+            <CardHeader className="flex flex-row items-center justify-between pb-2 p-4 sm:p-6">
+              <CardTitle className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">
                 Total Users
               </CardTitle>
-              <Users className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+              <Users className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-400" />
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-4 sm:p-6">
               {loadingStats ? (
                 <Skeleton className="h-8 w-20" />
               ) : (
-                <div className="text-2xl font-bold text-black dark:text-white">
+                <div className="text-xl sm:text-2xl font-bold text-black dark:text-white">
                   {stats?.totalUsers || 0}
                 </div>
               )}
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                Active users this month
+              </p>
             </CardContent>
           </Card>
-
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
+            <CardHeader className="flex flex-row items-center justify-between pb-2 p-4 sm:p-6">
+              <CardTitle className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">
                 Total Issues
               </CardTitle>
-              <AlertCircle className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+              <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-400" />
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-4 sm:p-6">
               {loadingStats ? (
                 <Skeleton className="h-8 w-20" />
               ) : (
-                <div className="text-2xl font-bold text-black dark:text-white">
+                <div className="text-xl sm:text-2xl font-bold text-black dark:text-white">
                   {stats?.totalIssues || 0}
                 </div>
               )}
@@ -236,19 +238,18 @@ export default function AdminDashboard() {
               )}
             </CardContent>
           </Card>
-
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
+            <CardHeader className="flex flex-row items-center justify-between pb-2 p-4 sm:p-6">
+              <CardTitle className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">
                 Resolution Rate
               </CardTitle>
-              <TrendingUp className="h-4 w-4 text-green-600 dark:text-green-400" />
+              <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-400" />
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-4 sm:p-6">
               {loadingStats ? (
                 <Skeleton className="h-8 w-20" />
               ) : (
-                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                <div className="text-xl sm:text-2xl font-bold text-black dark:text-white">
                   {stats?.resolutionRate || 0}%
                 </div>
               )}

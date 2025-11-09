@@ -17,9 +17,7 @@ export const metadata: Metadata = {
       { url: "/logo.png", sizes: "any" },
       { url: "/logo.png", type: "image/png", sizes: "32x32" },
     ],
-    apple: [
-      { url: "/logo.png", sizes: "180x180", type: "image/png" },
-    ],
+    apple: [{ url: "/logo.png", sizes: "180x180", type: "image/png" }],
     shortcut: ["/logo.png"],
   },
 };
@@ -32,11 +30,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+        />
         <link rel="icon" type="image/png" href="/logo.png?v=1" />
         <link rel="apple-touch-icon" href="/logo.png?v=1" />
         <link rel="shortcut icon" href="/logo.png?v=1" />
       </head>
-      <body className="antialiased font-sans">
+      <body className="antialiased font-sans overflow-x-hidden">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

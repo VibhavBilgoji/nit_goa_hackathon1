@@ -19,10 +19,10 @@ export function SectionCards() {
     return (
       <div className="grid grid-cols-1 gap-4 px-4 lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="p-6 border rounded-lg">
-            <Skeleton className="h-4 w-32 mb-4" />
-            <Skeleton className="h-8 w-24 mb-6" />
-            <Skeleton className="h-4 w-full" />
+          <div key={i} className="p-4 sm:p-6 border rounded-lg">
+            <Skeleton className="h-3 sm:h-4 w-24 sm:w-32 mb-3 sm:mb-4" />
+            <Skeleton className="h-6 sm:h-8 w-20 sm:w-24 mb-4 sm:mb-6" />
+            <Skeleton className="h-3 sm:h-4 w-full" />
           </div>
         ))}
       </div>
@@ -31,14 +31,14 @@ export function SectionCards() {
 
   return (
     <div className="grid grid-cols-1 gap-4 px-4 lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
-      <NeonGradientCard className="@container/card transition-all duration-300 ease-in-out hover:scale-[1.03] cursor-pointer">
-        <div className="flex flex-col gap-6 p-6">
+      <NeonGradientCard className="@container/card transition-all duration-300 ease-in-out hover:scale-[1.02] sm:hover:scale-[1.03] cursor-pointer">
+        <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-1">
-              <span className="text-sm font-medium text-muted-foreground">
+              <span className="text-xs sm:text-sm font-medium text-muted-foreground">
                 Active Issues
               </span>
-              <span className="text-3xl font-bold tracking-tight text-foreground @sm/card:text-4xl">
+              <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground @sm/card:text-4xl">
                 {stats.totalActiveIssues}
               </span>
             </div>
@@ -52,7 +52,7 @@ export function SectionCards() {
               </Badge>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-2 text-xs sm:text-sm">
             {stats.trendPercentages.activeIssues > 0 ? (
               <>
                 <IconTrendingUp className="h-4 w-4 text-red-500" />
@@ -73,14 +73,14 @@ export function SectionCards() {
         </div>
       </NeonGradientCard>
 
-      <NeonGradientCard className="@container/card transition-all duration-300 ease-in-out hover:scale-[1.03] cursor-pointer">
-        <div className="flex flex-col gap-6 p-6">
+      <NeonGradientCard className="@container/card transition-all duration-300 ease-in-out hover:scale-[1.02] sm:hover:scale-[1.03] cursor-pointer">
+        <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-1">
-              <span className="text-sm font-medium text-muted-foreground">
+              <span className="text-xs sm:text-sm font-medium text-muted-foreground">
                 SLA Compliance
               </span>
-              <span className="text-3xl font-bold tracking-tight text-foreground @sm/card:text-4xl">
+              <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground @sm/card:text-4xl">
                 {stats.slaComplianceRate}%
               </span>
             </div>
@@ -94,7 +94,7 @@ export function SectionCards() {
               </Badge>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-2 text-xs sm:text-sm">
             {stats.trendPercentages.slaCompliance > 0 ? (
               <>
                 <IconTrendingUp className="h-4 w-4 text-green-500" />
@@ -115,14 +115,14 @@ export function SectionCards() {
         </div>
       </NeonGradientCard>
 
-      <NeonGradientCard className="@container/card transition-all duration-300 ease-in-out hover:scale-[1.03] cursor-pointer">
-        <div className="flex flex-col gap-6 p-6">
+      <NeonGradientCard className="@container/card transition-all duration-300 ease-in-out hover:scale-[1.02] sm:hover:scale-[1.03] cursor-pointer">
+        <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-1">
-              <span className="text-sm font-medium text-muted-foreground">
+              <span className="text-xs sm:text-sm font-medium text-muted-foreground">
                 Avg Resolution
               </span>
-              <span className="text-3xl font-bold tracking-tight text-foreground @sm/card:text-4xl">
+              <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground @sm/card:text-4xl">
                 {stats.averageResolutionTime}d
               </span>
             </div>
@@ -136,7 +136,7 @@ export function SectionCards() {
               </Badge>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-2 text-xs sm:text-sm">
             {stats.trendPercentages.resolutionTime < 0 ? (
               <>
                 <IconTrendingDown className="h-4 w-4 text-green-500" />
@@ -157,14 +157,14 @@ export function SectionCards() {
         </div>
       </NeonGradientCard>
 
-      <NeonGradientCard className="@container/card transition-all duration-300 ease-in-out hover:scale-[1.03] cursor-pointer">
-        <div className="flex flex-col gap-6 p-6">
+      <NeonGradientCard className="@container/card transition-all duration-300 ease-in-out hover:scale-[1.02] sm:hover:scale-[1.03] cursor-pointer">
+        <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-1">
-              <span className="text-sm font-medium text-muted-foreground">
+              <span className="text-xs sm:text-sm font-medium text-muted-foreground">
                 Satisfaction
               </span>
-              <span className="text-3xl font-bold tracking-tight text-foreground @sm/card:text-4xl">
+              <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground @sm/card:text-4xl">
                 {stats.citizenSatisfaction}/5
               </span>
             </div>
@@ -178,7 +178,7 @@ export function SectionCards() {
               </Badge>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-2 text-xs sm:text-sm">
             {stats.trendPercentages.satisfaction > 0 ? (
               <>
                 <IconTrendingUp className="h-4 w-4 text-green-500" />

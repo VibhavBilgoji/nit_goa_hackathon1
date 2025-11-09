@@ -57,40 +57,41 @@ export default function Page() {
             {/* Dashboard Header */}
             <div className="px-4 lg:px-6">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-                <div>
-                  <h1 className="text-3xl font-bold tracking-tight">
+                <div className="w-full sm:w-auto">
+                  <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
                     <RotatingText text="OurStreet - Issue Tracking Dashboard" />
                   </h1>
-                  <p className="text-muted-foreground">
+                  <p className="text-sm sm:text-base text-muted-foreground mt-1">
                     Real-time civic issue reporting, tracking, and resolution
                     management for urban communities
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
                   <Badge
                     variant="outline"
-                    className="bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-300"
+                    className="bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-300 text-xs"
                   >
                     <Activity className="h-3 w-3 mr-1" />
                     {isLoading ? "Updating..." : "System Active"}
                   </Badge>
                   <Badge
                     variant="outline"
-                    className="bg-orange-50 dark:bg-orange-950 text-orange-700 dark:text-orange-300"
+                    className="bg-orange-50 dark:bg-orange-950 text-orange-700 dark:text-orange-300 text-xs"
                   >
                     <Bell className="h-3 w-3 mr-1" />
-                    {stats.criticalIssuesPending} Critical Issues
+                    {stats.criticalIssuesPending} Critical
                   </Badge>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={refreshDashboard}
                     disabled={isLoading}
+                    className="text-xs"
                   >
                     <RefreshCw
-                      className={`h-4 w-4 mr-1 ${isLoading ? "animate-spin" : ""}`}
+                      className={`h-4 w-4 sm:mr-1 ${isLoading ? "animate-spin" : ""}`}
                     />
-                    Refresh
+                    <span className="hidden sm:inline">Refresh</span>
                   </Button>
                 </div>
               </div>
@@ -102,10 +103,10 @@ export default function Page() {
             {/* Hotspot Trend Projection & Resource Demand Charts */}
             <div className="px-4 lg:px-6">
               <div className="mb-4">
-                <h2 className="text-2xl font-bold tracking-tight mb-2">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-2">
                   Hotspot Trend Projection & Resource Demand
                 </h2>
-                <p className="text-muted-foreground">
+                <p className="text-sm sm:text-base text-muted-foreground">
                   AI-powered predictions for issue hotspots and resource
                   allocation optimization
                 </p>
@@ -113,19 +114,17 @@ export default function Page() {
               <ChartAreaInteractive />
             </div>
 
-
-
             {/* Additional Insights Grid */}
             <div className="px-4 lg:px-6">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {/* Real-time Activity Feed */}
-                <NeonGradientCard className="transition-all duration-300 ease-in-out hover:scale-[1.03] cursor-pointer">
-                  <div className="flex flex-col gap-6">
-                    <div className="flex items-center gap-2 text-lg font-semibold text-black dark:text-white">
-                      <Activity className="h-5 w-5 text-blue-500" />
+                <NeonGradientCard className="transition-all duration-300 ease-in-out hover:scale-[1.02] sm:hover:scale-[1.03] cursor-pointer">
+                  <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
+                    <div className="flex items-center gap-2 text-base sm:text-lg font-semibold text-black dark:text-white">
+                      <Activity className="h-4 w-4 sm:h-5 sm:w-5 text-blue-500" />
                       Recent Activity
                     </div>
-                    <div className="text-gray-600 dark:text-gray-400 text-sm">
+                    <div className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
                       Latest system updates and resolved issues
                     </div>
                     <div className="space-y-3 text-black dark:text-white">
@@ -171,13 +170,13 @@ export default function Page() {
                 </NeonGradientCard>
 
                 {/* Predictive Insights */}
-                <NeonGradientCard className="transition-all duration-300 ease-in-out hover:scale-[1.03] cursor-pointer">
-                  <div className="flex flex-col gap-6">
-                    <div className="flex items-center gap-2 text-lg font-semibold text-black dark:text-white">
-                      <TrendingUp className="h-5 w-5 text-purple-500" />
+                <NeonGradientCard className="transition-all duration-300 ease-in-out hover:scale-[1.02] sm:hover:scale-[1.03] cursor-pointer">
+                  <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
+                    <div className="flex items-center gap-2 text-base sm:text-lg font-semibold text-black dark:text-white">
+                      <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-purple-500" />
                       Predictive Insights
                     </div>
-                    <div className="text-gray-600 dark:text-gray-400 text-sm">
+                    <div className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
                       AI-powered recommendations and forecasts
                     </div>
                     <div className="space-y-4">
@@ -230,13 +229,13 @@ export default function Page() {
                 </NeonGradientCard>
 
                 {/* Community Impact Assessment */}
-                <NeonGradientCard className="transition-all duration-300 ease-in-out hover:scale-[1.03] cursor-pointer">
-                  <div className="flex flex-col gap-6">
-                    <div className="flex items-center gap-2 text-lg font-semibold text-black dark:text-white">
-                      <AlertTriangle className="h-5 w-5 text-orange-500" />
+                <NeonGradientCard className="transition-all duration-300 ease-in-out hover:scale-[1.02] sm:hover:scale-[1.03] cursor-pointer">
+                  <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
+                    <div className="flex items-center gap-2 text-base sm:text-lg font-semibold text-black dark:text-white">
+                      <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-orange-500" />
                       Community Impact Assessment
                     </div>
-                    <div className="text-gray-600 dark:text-gray-400 text-sm">
+                    <div className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
                       High-impact areas requiring urgent civic attention
                     </div>
                     <div className="space-y-3 text-black dark:text-white">
