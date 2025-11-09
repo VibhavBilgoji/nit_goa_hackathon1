@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/contexts/auth-context";
+import { adminFetch } from "@/lib/admin-api";
 import {
   Card,
   CardContent,
@@ -78,12 +79,7 @@ export default function AdminDashboard() {
 
   const fetchAdminStats = async () => {
     try {
-      const token = localStorage.getItem("citypulse_auth_token");
-      const response = await fetch("/api/admin/stats", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await adminFetch("/api/admin/stats");
 
       if (response.ok) {
         const data = await response.json();

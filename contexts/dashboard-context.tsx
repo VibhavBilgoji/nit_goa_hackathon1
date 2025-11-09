@@ -7,6 +7,7 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
+import { adminFetch } from "@/lib/admin-api";
 
 export interface DashboardStats {
   totalActiveIssues: number;
@@ -154,7 +155,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
 
     try {
       // Use analytics/stats endpoint for comprehensive dashboard data
-      const response = await fetch("/api/analytics/stats");
+      const response = await adminFetch("/api/analytics/stats");
       const result = await response.json();
 
       // Update all dashboard state
@@ -199,7 +200,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Fetch issues for geospatial data
-      const issuesResponse = await fetch(
+      const issuesResponse = await adminFetch(
         "/api/issues?limit=100&sortBy=createdAt&sortOrder=desc",
       );
       const issuesResult = await issuesResponse.json();
@@ -332,7 +333,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
   // Update stats only
   const updateStats = useCallback(async () => {
     try {
-      const response = await fetch("/api/analytics/stats");
+      const response = await adminFetch("/api/analytics/stats");
       const result = await response.json();
 
       if (result.success && result.data) {
