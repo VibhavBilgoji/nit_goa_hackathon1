@@ -12,6 +12,7 @@
     "start": "next start",
     "lint": "eslint",
     "verify-env": "node scripts/verify-env.js",
+    "generate-env": "node scripts/generate-env.js",
     "prebuild": "node scripts/verify-env.js",
     "test:integration": "node scripts/test-integration.js"
   },
