@@ -172,7 +172,7 @@ export default function TeamPage() {
                 "Next.js 14",
                 "TypeScript",
                 "Tailwind CSS",
-                "shadcn/ui",
+                "gsap",
                 "React",
                 "Node.js",
                 "Recharts",

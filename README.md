@@ -84,7 +84,7 @@ Urban citizens face everyday civic issues but lack accessible and transparent re
 - **Next.js 14** - React framework with App Router
 - **TypeScript** - Type-safe development
 - **Tailwind CSS** - Utility-first styling
-- **Shadcn/ui** - Component library
+- **gsap/ui** - Component library
 - **Magic UI** - Advanced UI components
 - **MapTiler** - Interactive maps
 - **React Hook Form** - Form management
@@ -213,7 +213,7 @@ NIT_GOA_HACKATHON/
 │   ├── signup/              # Registration page
 │   └── page.tsx             # Landing page
 ├── components/              # React components
-│   ├── ui/                  # Shadcn UI components
+│   ├── ui/                  # gsap UI components
 │   ├── magicui/            # Magic UI components
 │   ├── navigation.tsx       # Main navigation
 │   ├── interactive-map.tsx  # Map component
@@ -550,7 +550,7 @@ JWT_SECRET=$(openssl rand -base64 32)
 ```
 
 #### 2. "Cannot connect to database"
-**Solution:** 
+**Solution:**
 - For development: No action needed (uses in-memory DB)
 - For production: Check Supabase credentials
 
@@ -564,7 +564,7 @@ JWT_SECRET=$(openssl rand -base64 32)
 **Solution:** Check JWT_SECRET is consistent between deployments
 
 #### 6. Login fails with valid credentials
-**Solution:** 
+**Solution:**
 - Check password hash format in database
 - Run password fix script: `psql < supabase/fix-passwords.sql`
 
@@ -619,7 +619,7 @@ MIT License - see LICENSE file for details
 - **Next.js Team** - Amazing React framework
 - **Vercel** - Seamless deployment
 - **Supabase** - Excellent PostgreSQL hosting
-- **Shadcn** - Beautiful UI components
+- **gsap** - Beautiful UI components
 - **MapTiler** - Interactive mapping
 - **Google** - Gemini AI API
 - **NIT Goa Hackathon** - Inspiration and support
