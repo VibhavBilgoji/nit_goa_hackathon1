@@ -44,6 +44,34 @@ export default function AdminDashboard() {
   const [loadingStats, setLoadingStats] = useState(true);
 
   useEffect(() => {
+    // Auto-login as admin for seamless access
+    const setupAdminAccess = () => {
+      // Create a fake admin user token and store it
+      const fakeAdminUser = {
+        id: "admin-bypass-001",
+        email: "admin@ourstreet.local",
+        name: "Administrator",
+        role: "admin",
+      };
+
+      // Store in localStorage for API calls
+      localStorage.setItem("citypulse_user", JSON.stringify(fakeAdminUser));
+
+      // Create a simple JWT-like token (for demo purposes)
+      const fakeToken = btoa(
+        JSON.stringify({
+          userId: fakeAdminUser.id,
+          email: fakeAdminUser.email,
+          role: "admin",
+          exp: Date.now() + 86400000, // 24 hours
+        }),
+      );
+
+      localStorage.setItem("citypulse_auth_token", fakeToken);
+    };
+
+    setupAdminAccess();
+
     // Authentication bypass - always load stats
     fetchAdminStats();
   }, []);

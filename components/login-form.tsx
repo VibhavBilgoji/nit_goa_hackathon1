@@ -37,7 +37,30 @@ export function LoginForm({
 
     try {
       if (isAdminLogin) {
-        // Bypass admin authentication - go directly to admin dashboard
+        // Bypass admin authentication - setup fake admin credentials for API access
+        const fakeAdminUser = {
+          id: "admin-bypass-001",
+          email: "admin@ourstreet.local",
+          name: "Administrator",
+          role: "admin",
+        };
+
+        // Store in localStorage for API calls
+        localStorage.setItem("citypulse_user", JSON.stringify(fakeAdminUser));
+
+        // Create a simple JWT-like token (for demo purposes)
+        const fakeToken = btoa(
+          JSON.stringify({
+            userId: fakeAdminUser.id,
+            email: fakeAdminUser.email,
+            role: "admin",
+            exp: Date.now() + 86400000, // 24 hours
+          }),
+        );
+
+        localStorage.setItem("citypulse_auth_token", fakeToken);
+
+        // Redirect to admin dashboard
         router.push("/admin");
         return;
       } else {
