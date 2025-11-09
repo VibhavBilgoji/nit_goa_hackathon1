@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/contexts/auth-context";
+import { adminFetch } from "@/lib/admin-api";
 import {
   Card,
   CardContent,
@@ -92,17 +93,12 @@ export default function AdminUsersPage() {
   const fetchUsers = async () => {
     setLoadingUsers(true);
     try {
-      const token = localStorage.getItem("citypulse_auth_token");
       const params = new URLSearchParams();
 
       if (filters.role) params.append("role", filters.role);
       if (searchTerm) params.append("search", searchTerm);
 
-      const response = await fetch(`/api/admin/users?${params}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await adminFetch(`/api/admin/users?${params}`);
 
       if (response.ok) {
         const data = await response.json();
@@ -122,12 +118,10 @@ export default function AdminUsersPage() {
 
   const handleRoleUpdate = async (userId: string, newRole: string) => {
     try {
-      const token = localStorage.getItem("citypulse_auth_token");
-      const response = await fetch(`/api/admin/users/${userId}`, {
+      const response = await adminFetch(`/api/admin/users/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ role: newRole }),
       });
@@ -148,12 +142,8 @@ export default function AdminUsersPage() {
     if (!confirm("Are you sure you want to delete this user?")) return;
 
     try {
-      const token = localStorage.getItem("citypulse_auth_token");
-      const response = await fetch(`/api/admin/users/${userId}`, {
+      const response = await adminFetch(`/api/admin/users/${userId}`, {
         method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       });
 
       if (response.ok) {

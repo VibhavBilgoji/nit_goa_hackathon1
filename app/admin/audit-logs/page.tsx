@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/contexts/auth-context";
+import { adminFetch } from "@/lib/admin-api";
 import {
   Card,
   CardContent,
@@ -90,7 +91,6 @@ export default function AdminAuditLogsPage() {
   const fetchAuditLogs = async () => {
     setLoadingLogs(true);
     try {
-      const token = localStorage.getItem("citypulse_auth_token");
       const params = new URLSearchParams();
 
       if (filters.action) params.append("action", filters.action);
@@ -103,11 +103,7 @@ export default function AdminAuditLogsPage() {
       params.append("page", currentPage.toString());
       params.append("limit", logsPerPage.toString());
 
-      const response = await fetch(`/api/admin/audit-logs?${params}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await adminFetch(`/api/admin/audit-logs?${params}`);
 
       if (response.ok) {
         const data = await response.json();

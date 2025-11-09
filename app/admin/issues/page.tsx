@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/contexts/auth-context";
+import { adminFetch } from "@/lib/admin-api";
 import {
   Card,
   CardContent,
@@ -75,7 +76,6 @@ export default function AdminIssuesPage() {
   const fetchIssues = async () => {
     setLoadingIssues(true);
     try {
-      const token = localStorage.getItem("citypulse_auth_token");
       const params = new URLSearchParams();
 
       if (filters.status) params.append("status", filters.status);
@@ -84,11 +84,7 @@ export default function AdminIssuesPage() {
       if (filters.priority) params.append("priority", filters.priority);
       if (searchTerm) params.append("search", searchTerm);
 
-      const response = await fetch(`/api/admin/issues?${params}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await adminFetch(`/api/admin/issues?${params}`);
 
       if (response.ok) {
         const data = await response.json();
@@ -108,12 +104,10 @@ export default function AdminIssuesPage() {
 
   const handleStatusUpdate = async (issueId: string, newStatus: string) => {
     try {
-      const token = localStorage.getItem("citypulse_auth_token");
-      const response = await fetch(`/api/issues/${issueId}`, {
+      const response = await adminFetch(`/api/issues/${issueId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ status: newStatus }),
       });
@@ -134,12 +128,8 @@ export default function AdminIssuesPage() {
     if (!confirm("Are you sure you want to delete this issue?")) return;
 
     try {
-      const token = localStorage.getItem("citypulse_auth_token");
-      const response = await fetch(`/api/issues/${issueId}`, {
+      const response = await adminFetch(`/api/issues/${issueId}`, {
         method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       });
 
       if (response.ok) {
@@ -161,13 +151,13 @@ export default function AdminIssuesPage() {
     }
 
     try {
-      const token = localStorage.getItem("citypulse_auth_token");
+      setIsProcessing(true);
+
       const updatePromises = selectedIssues.map((issueId) =>
-        fetch(`/api/issues/${issueId}`, {
+        adminFetch(`/api/issues/${issueId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ status: newStatus }),
         }),

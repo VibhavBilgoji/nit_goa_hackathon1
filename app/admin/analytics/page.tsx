@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { Navigation } from "@/components/navigation";
+import { adminFetch } from "@/lib/admin-api";
 import {
   Card,
   CardContent,
@@ -106,13 +107,12 @@ export default function AnalyticsPage() {
       const params = new URLSearchParams({
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
+        reportFormat,
       });
 
-      const response = await fetch(`/api/analytics/impact-report?${params}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await adminFetch(
+        `/api/analytics/impact-report?${params}`,
+      );
 
       const data = await response.json();
       if (data.success) {
