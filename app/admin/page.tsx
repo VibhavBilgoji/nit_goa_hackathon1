@@ -44,17 +44,9 @@ export default function AdminDashboard() {
   const [loadingStats, setLoadingStats] = useState(true);
 
   useEffect(() => {
-    // Redirect if not authenticated or not admin
-    if (!isLoading && (!isAuthenticated || user?.role !== "admin")) {
-      router.push("/");
-    }
-  }, [isAuthenticated, user, isLoading, router]);
-
-  useEffect(() => {
-    if (isAuthenticated && user?.role === "admin") {
-      fetchAdminStats();
-    }
-  }, [isAuthenticated, user]);
+    // Authentication bypass - always load stats
+    fetchAdminStats();
+  }, []);
 
   const fetchAdminStats = async () => {
     try {
@@ -88,7 +80,7 @@ export default function AdminDashboard() {
   };
 
   // Show loading state
-  if (isLoading || !user) {
+  if (loadingStats) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
         <div className="container mx-auto px-4 py-8">
@@ -101,11 +93,6 @@ export default function AdminDashboard() {
         </div>
       </div>
     );
-  }
-
-  // Redirect non-admins
-  if (user?.role !== "admin") {
-    return null;
   }
 
   const adminFeatures = [
@@ -176,8 +163,8 @@ export default function AdminDashboard() {
             </h1>
           </div>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-            Welcome back, {user?.name}. Manage and monitor your OurStreet
-            platform.
+            Welcome back, {user?.name || "Administrator"}. Manage and monitor
+            your OurStreet platform.
           </p>
         </div>
 

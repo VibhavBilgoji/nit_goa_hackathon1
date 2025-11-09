@@ -36,28 +36,13 @@ export function LoginForm({
     setIsLoading(true);
 
     try {
-      let result;
-
       if (isAdminLogin) {
-        // Admin login requires admin ID
-        if (!adminId.trim()) {
-          setError("Admin ID is required for administrator login");
-          setIsLoading(false);
-          return;
-        }
-        result = await adminLogin(email, password, adminId);
-
-        if (result.success) {
-          router.push("/admin");
-        } else {
-          setError(
-            result.error ||
-              "Admin login failed. Please check your credentials and Admin ID.",
-          );
-        }
+        // Bypass admin authentication - go directly to admin dashboard
+        router.push("/admin");
+        return;
       } else {
         // Regular user login
-        result = await login(email, password);
+        const result = await login(email, password);
 
         if (result.success) {
           router.push("/dashboard");
