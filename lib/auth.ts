@@ -51,7 +51,9 @@ export function verifyToken(
     // Check if it's a bypass token (base64 encoded JSON from admin bypass)
     if (token.startsWith("eyJ") && !token.includes(".")) {
       try {
-        const decoded = JSON.parse(atob(token));
+        const decoded = JSON.parse(
+          Buffer.from(token, "base64").toString("utf-8"),
+        );
         if (decoded.userId && decoded.email && decoded.role === "admin") {
           return {
             userId: decoded.userId,
